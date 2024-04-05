@@ -22,3 +22,11 @@ app.use(express.urlencoded({ extended: true, limit: "16kb" })); -->
 <!-- express.static() Middleware: This middleware is used to serve static files such as images, CSS files, JavaScript files, etc., from the specified directory (public in this case). It allows you to serve these files directly to clients without the need for additional routing logic. In this configuration, any request made to the server will first check if there's a matching file in the public directory, and if found, it will be served as-is.
 
 app.use(express.static("public")); -->
+
+<!-- The userSchema.pre() function is a method provided by Mongoose to define pre-save middleware. Pre-save middleware are functions that execute before a document (in this case, a user document) is saved to the database.
+
+            userSchema.pre("save", async function (next) {
+            if (!this.isModified("password")) return next();
+            this.password = bcrypt.hash(this.password, 10);
+            next();
+            }); -->
